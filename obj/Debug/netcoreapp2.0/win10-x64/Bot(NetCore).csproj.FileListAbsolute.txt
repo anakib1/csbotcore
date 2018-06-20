@@ -1,0 +1,14 @@
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\hostpolicy.dll
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\hostfxr.dll
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).exe
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).deps.json
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).runtimeconfig.json
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).runtimeconfig.dev.json
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).dll
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).pdb
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).csprojAssemblyReference.cache
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).csproj.CoreCompileInputs.cache
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).AssemblyInfoInputs.cache
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).AssemblyInfo.cs
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).dll
+C:\Users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\win10-x64\Bot(NetCore).pdb
