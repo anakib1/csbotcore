@@ -1,0 +1,11 @@
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\Bot(NetCore).deps.json
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\Bot(NetCore).runtimeconfig.json
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\Bot(NetCore).runtimeconfig.dev.json
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\Bot(NetCore).dll
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).csprojAssemblyReference.cache
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).csproj.CoreCompileInputs.cache
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).AssemblyInfoInputs.cache
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).AssemblyInfo.cs
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\bin\Debug\netcoreapp2.0\Bot(NetCore).pdb
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).dll
+c:\users\bidzi\source\repos\Bot(NetCore)\Bot(NetCore)\obj\Debug\netcoreapp2.0\Bot(NetCore).pdb
