@@ -20,6 +20,9 @@ namespace Bot_NetCore_
     }
     class Logik
     {
+        Translate tr = new Translate();
+        Miner mr = new Miner();
+        bot.Stocks sr = new bot.Stocks();
         private static TelegramBotClient Bot;
         public void Start()
         {
@@ -37,9 +40,11 @@ namespace Bot_NetCore_
             var message = messageEventArgs.Message;
             if (message?.Type == MessageType.TextMessage)
             {
+                string[] _message = message.Text.Split(' ');
+                
                 if (message.Text == message.Text.ToUpper() && !message.Text.Contains(".") && !message.Text.Contains("(") && !message.Text.Contains(")") && !message.Text.Contains("+"))
                 {
-                    Telegram.Bot.Types.FileToSend[] s = { new Telegram.Bot.Types.FileToSend("CAADAgADtgAD0QABxA2mtwKzCy1LuAI"),
+                                    FileToSend[] s = { new Telegram.Bot.Types.FileToSend("CAADAgADtgAD0QABxA2mtwKzCy1LuAI"),
                                     new Telegram.Bot.Types.FileToSend("CAADAgADnQAD0QABxA0qCVaPhb0-swI"),
                                     new Telegram.Bot.Types.FileToSend("CAADAgADnwAD0QABxA1K-2P5V_m8CgI"),
                                     new Telegram.Bot.Types.FileToSend("CAADAgADdQAD0QABxA2IN-acF43gnAI"),
@@ -51,6 +56,98 @@ namespace Bot_NetCore_
                                 };
                     Random random = new Random();
                     await Bot.SendStickerAsync(message.Chat.Id, s[random.Next(0, s.Length)], replyToMessageId: message.MessageId);
+                }
+                if(message.Text=="/gethash")
+                {
+                    await Bot.SendTextMessageAsync(message.Chat.Id, sr.GetDif("ETH"));
+                }
+                if(message.Text.Contains("/trns"))
+                {
+                    try
+                    {
+                        if (message.ReplyToMessage.Text != null)
+                        {
+                            string res = "";
+                            string[] tmp = message.ReplyToMessage.Text.Split(' ');
+                            foreach(string w in tmp)
+                            try
+                            {
+                                    if (tr.tr(w)!="хуюля")
+                                    {
+                                        res += tr.tr(w) + " ";
+                                    }
+                            }
+                            catch (Exception TranslateE)
+                            {
+                                Console.WriteLine(TranslateE.Message);
+                            }
+                            await Bot.SendTextMessageAsync(message.Chat.Id, res);
+                        }
+                    }
+                    catch(Exception)
+                    {
+                        if (_message.Length == 2)
+                        {
+                            try
+                            {
+                                if (tr.tr(_message[1])!="хуюля")
+                                {
+                                    await Bot.SendTextMessageAsync(message.Chat.Id, tr.tr(_message[1]));
+                                }
+                            }
+                            catch (Exception TranslateE)
+                            {
+                                Console.WriteLine(TranslateE.Message);
+                            }
+                        }
+                    }
+                    
+                    try
+                    {
+                        await Bot.DeleteMessageAsync(message.Chat.Id, message.MessageId);
+                    }
+                    catch(Exception deleteE)
+                    {
+                        Console.WriteLine(deleteE.Message);
+                    }
+                    
+                }
+                if(message.Text.Contains("/reg"))
+                {
+                    try
+                    {
+                        mr.AddPlayer(message.From.Username);
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "вы в игре!");
+                    }
+                    catch(Exception registerE)
+                    {
+                        await Bot.SendTextMessageAsync(message.Chat.Id, " some error occused");
+                        Console.WriteLine(registerE.Message);
+                    }
+                }
+                if(message.Text.Contains("/exit"))
+                {
+                    try
+                    {
+                        mr.DelPlayer(message.From.Username);
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "вы свалили(");
+                    }
+                    catch (Exception registerE)
+                    {
+                        await Bot.SendTextMessageAsync(message.Chat.Id, " some error occused");
+                        Console.WriteLine(registerE.Message);
+                    }
+                }
+                if(message.Text.Contains("/getminer"))
+                {
+                    try
+                    {
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "@"+mr.GetMinerOfDay());
+                    }
+                    catch(Exception MinerE)
+                    {
+                        Console.WriteLine(MinerE.Message);
+                    }
                 }
             }
         }

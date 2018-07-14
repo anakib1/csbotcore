@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 namespace bot
 {
-    class Stocks
+    public class Stocks
     {
         double AvgFromDynamic(dynamic a)
         {
@@ -60,6 +60,25 @@ namespace bot
             btcUSD = JsonConvert.DeserializeObject(RequestToApi(@"https://api.exmo.com/v1/trades/?pair=BTC_USD"));
             dogeBTC = JsonConvert.DeserializeObject(RequestToApi(@"https://api.exmo.com/v1/trades/?pair=DOGE_BTC"));
 
+        }
+        public string GetDif(string cur)
+        {
+            if (cur == "ETH")
+            {
+                try
+                {
+                    dynamic res;
+                    Console.Write(RequestToApi(@"https://www.etherchain.org/api/basic_stats") + "\n");
+                    res = JsonConvert.DeserializeObject(RequestToApi(@"https://www.etherchain.org/api/basic_stats"));
+                    return res["currentStats"]["hashrate"];
+                }
+                catch(Exception APIEx)
+                {
+                    return "error while getting hashrate "+APIEx.Message;
+                }
+            }
+            else
+                return "error no such cur";
         }
         public string GetAvg(string currency)
         {

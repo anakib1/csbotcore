@@ -239,52 +239,64 @@ namespace Bot_NetCore_
         public string tr(string word)
         {
             string res = word;
-            if (res.Length < 2)
-            {
-                res = "hui" + res;
-                return res;
-            }
-
+            
             while (res.Length < 6)
             {
                 res = "0" + res;
             }
-            if (res.Contains("i"))
+
+            char[] g = { 'у', 'е', 'а', 'о', 'э', 'и', 'ю', 'я' };
+            char firstC='j';
+            foreach(char c in word)
             {
-                res = "huy" + res.Substring(3);
-                return res;
+                if(g.Contains(c))
+                {
+                    firstC = c;
+                    break;
+                }
             }
-            if (res.Contains("e"))
+            if(firstC=='у')
             {
-                res = "hue" + res.Substring(3);
-                return res;
-            }
-            if (res.Contains("o"))
-            {
-                res = "huy" + res.Substring(3);
-                return res;
-            }
-            if (res.Contains("ya"))
-            {
-                res = "huya" + res.Substring(3);
-                return res;
-            }
-            if (res.Contains("u") || res.Contains("yu"))
-            {
-                res = "huyu" + res.Substring(3);
-                return res;
-            }
-            if (res.Contains("a"))
-            {
-                res = "huya" + res.Substring(3);
-                return res;
-            }
-            else
-            {
-                res = "hui" + res.Substring(3);
-                return res;
+                res = "хую" + res.Substring(res.IndexOf(firstC)+1);
             }
 
+            if (firstC == 'е')
+            {
+                res = "хуе" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+
+            if (firstC == 'а')
+            {
+                res = "хуя" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+
+            if (firstC == 'о')
+            {
+                res = "хуе" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+            if (firstC == 'э')
+            {
+                res = "хуи" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+            if (firstC == 'и')
+            {
+                res = "хуи" + res.Substring(res.IndexOf(firstC)+1);
+            }
+            if (firstC == 'ю')
+            {
+                res = "хую" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+            if (firstC == 'я')
+            {
+                res = "хуя" + res.Substring(res.IndexOf(firstC)+1);
+
+            }
+            return res;
         }
     }
     //zinia class
