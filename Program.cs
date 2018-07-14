@@ -21,7 +21,7 @@ namespace Bot_NetCore_
     class Logik
     {
         Translate tr = new Translate();
-        Miner mr = new Miner();
+        //Miner mr = new Miner();
         bot.Stocks sr = new bot.Stocks();
         private static TelegramBotClient Bot;
         public void Start()
@@ -112,6 +112,7 @@ namespace Bot_NetCore_
                     }
                     
                 }
+                /*
                 if(message.Text.Contains("/reg"))
                 {
                     try
@@ -149,6 +150,7 @@ namespace Bot_NetCore_
                         Console.WriteLine(MinerE.Message);
                     }
                 }
+                */
             }
         }
     }
