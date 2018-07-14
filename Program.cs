@@ -23,6 +23,7 @@ namespace Bot_NetCore_
         Translate tr = new Translate();
         //Miner mr = new Miner();
         bot.Stocks sr = new bot.Stocks();
+        
         private static TelegramBotClient Bot;
         public void Start()
         {
@@ -56,6 +57,24 @@ namespace Bot_NetCore_
                                 };
                     Random random = new Random();
                     await Bot.SendStickerAsync(message.Chat.Id, s[random.Next(0, s.Length)], replyToMessageId: message.MessageId);
+                }
+                if(message.Text.Contains("/getprice"))
+                {
+                    try
+                    {
+                        if (message.Text.Split(' ').Length != 2)
+                        {
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "error, invalid syntax (code S0)");
+                        }
+                        else
+                        {
+                            await Bot.SendTextMessageAsync(message.Chat.Id, sr.GetAvg(message.Text.Split(' ')[1]));
+                        }
+                    }
+                    catch(Exception StockE)
+                    {
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "error, invalid syntax (code S1) "+StockE.Message);
+                    }
                 }
                 if(message.Text=="/gethash")
                 {

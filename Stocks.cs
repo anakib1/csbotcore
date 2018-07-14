@@ -84,6 +84,7 @@ namespace bot
         {
             try
             {
+                /*
                 if (currency == "ETH")
                 {
                     return AvgFromDynamic(ethUSD).ToString()+ " #ETH";
@@ -96,8 +97,8 @@ namespace bot
                 {
                     return (AvgFromDynamic(dogeBTC,"DOGE_BTC") * AvgFromDynamic(btcUSD,"BTC_USD")).ToString()+" #DOGE";
                 }
-                else
-                {
+                */
+                
                     try
                     {
                         
@@ -107,7 +108,7 @@ namespace bot
                     {
                         return "error S2, no such currency in bot yet " + e4.Message;
                     }
-                }
+                
             }
             catch(Exception e3)
             {
