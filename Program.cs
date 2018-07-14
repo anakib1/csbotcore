@@ -73,8 +73,10 @@ namespace Bot_NetCore_
                     }
                     catch(Exception StockE)
                     {
-                        await Bot.SendTextMessageAsync(message.Chat.Id, "error, invalid syntax (code S1) "+StockE.Message);
+                        if(!StockE.Message.Contains("phone_number"))
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "error, invalid syntax (code S1) "+StockE.Message);
                     }
+                    
                 }
                 if(message.Text=="/gethash")
                 {
