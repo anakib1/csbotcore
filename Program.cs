@@ -36,6 +36,15 @@ namespace Bot_NetCore_
             Console.ReadLine();
             Bot.StopReceiving();
         }
+        bool IsAllUpper(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (Char.IsLetter(input[i]) && !Char.IsUpper(input[i]))
+                    return false;
+            }
+            return true;
+        }
         private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             var message = messageEventArgs.Message;
@@ -43,7 +52,7 @@ namespace Bot_NetCore_
             {
                 string[] _message = message.Text.Split(' ');
                 
-                if (message.Text == message.Text.ToUpper() && !message.Text.Contains(".") && !message.Text.Contains("(") && !message.Text.Contains(")") && !message.Text.Contains("+"))
+                if (IsAllUpper(message.Text))
                 {
                                     FileToSend[] s = { new Telegram.Bot.Types.FileToSend("CAADAgADtgAD0QABxA2mtwKzCy1LuAI"),
                                     new Telegram.Bot.Types.FileToSend("CAADAgADnQAD0QABxA0qCVaPhb0-swI"),
