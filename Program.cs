@@ -39,7 +39,7 @@ namespace Bot_NetCore_
         }
         bool IsAllUpper(string input)
         {
-            string a = "йцукенгшщзхъэждлорпавыфячсмитьбюё";
+            string a = "йцукенгшщзхъэждлорпавыфячсмитьбюё".ToUpper();
             foreach(char c in input)
             {
                 if(!a.Contains(c)||c.ToString()!=c.ToString().ToUpper())
