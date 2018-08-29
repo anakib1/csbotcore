@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Data;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -23,7 +24,7 @@ namespace Bot_NetCore_
         Translate tr = new Translate();
         //Miner mr = new Miner();
         bot.Stocks sr = new bot.Stocks();
-        
+        public int number { get; set; } = 0;
         private static TelegramBotClient Bot;
         public void Start()
         {
@@ -38,20 +39,27 @@ namespace Bot_NetCore_
         }
         bool IsAllUpper(string input)
         {
-            for (int i = 0; i < input.Length; i++)
+            string a = "йцукенгшщзхъэждлорпавыфячсмитьбюё";
+            foreach(char c in input)
             {
-                if (Char.IsLetter(input[i]) && !Char.IsUpper(input[i]))
+                if(!a.Contains(c)||c.ToString()!=c.ToString().ToUpper())
+                {
                     return false;
+                }
             }
+           
             return true;
         }
         private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
+            if(DateTime.Now.Minute%2==0&&DateTime.Now.Second==0)
+            {
+                number = 0;
+            }
             var message = messageEventArgs.Message;
             if (message?.Type == MessageType.TextMessage)
             {
                 string[] _message = message.Text.Split(' ');
-                
                 if (IsAllUpper(message.Text))
                 {
                                     FileToSend[] s = { new Telegram.Bot.Types.FileToSend("CAADAgADtgAD0QABxA2mtwKzCy1LuAI"),
@@ -65,6 +73,7 @@ namespace Bot_NetCore_
                                     new Telegram.Bot.Types.FileToSend("CAADAgADzwAD0QABxA21rcb257ePPwI"),
                                 };
                     Random random = new Random();
+                    if(number<100)
                     await Bot.SendStickerAsync(message.Chat.Id, s[random.Next(0, s.Length)], replyToMessageId: message.MessageId);
                 }
                 if(message.Text.Contains("/getprice"))
