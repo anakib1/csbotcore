@@ -50,6 +50,10 @@ namespace Bot_NetCore_
            
             return true;
         }
+        double DegreesToRadian(double degrees)
+        {
+            return degrees * Math.PI / 180;
+        }
         private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             if(DateTime.Now.Minute%2==0&&DateTime.Now.Second==0)
@@ -57,6 +61,25 @@ namespace Bot_NetCore_
                 number = 0;
             }
             var message = messageEventArgs.Message;
+            if(message.From.Username=="pauchok1love")
+            {
+                if(message.Type==MessageType.LocationMessage)
+                {
+                    var location = message.Location;
+                    var earthRadiusKm = 6371;
+
+                    var dLat = DegreesToRadian(location.Latitude - 50.458205);
+                    var dLon = DegreesToRadian(location.Longitude - 30.363090);
+                    location.Latitude = (float)DegreesToRadian(location.Latitude);
+                    float klat = (float)DegreesToRadian(50.458205);
+
+                    var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                            Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(location.Latitude) * Math.Cos(klat);
+                    var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                    var res= earthRadiusKm * c;
+                    await Bot.SendTextMessageAsync(message.Chat.Id, "you need to go: "+ res.ToString()+"to get to Kiev");
+                }
+            }
             if (message?.Type == MessageType.TextMessage)
             {
                 string[] _message = message.Text.Split(' ');
