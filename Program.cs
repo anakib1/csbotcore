@@ -82,7 +82,7 @@ namespace Bot_NetCore_
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
-                                DateTime now = DateTime.Now;
+                                DateTime now = DateTime.UtcNow;
                                 now.AddMinutes(time);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                             }
@@ -152,7 +152,7 @@ namespace Bot_NetCore_
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
-                                DateTime now = DateTime.Now;
+                                DateTime now = DateTime.UtcNow;
                                 now.AddMinutes(time);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                             }
