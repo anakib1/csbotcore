@@ -83,7 +83,7 @@ namespace Bot_NetCore_
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
                                 DateTime now = DateTime.UtcNow;
-                                now.AddMinutes(time);
+                                now =now.AddMinutes(time);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                             }
                             else
@@ -153,7 +153,7 @@ namespace Bot_NetCore_
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
                                 DateTime now = DateTime.UtcNow;
-                                now.AddMinutes(time);
+                                now =now.AddMinutes(time);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                             }
                             else
