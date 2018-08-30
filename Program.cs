@@ -6,6 +6,7 @@ using System.Data;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
+using System.Threading;
 using Telegram.Bot.Types.Enums;
 namespace Bot_NetCore_
 {
@@ -62,8 +63,19 @@ namespace Bot_NetCore_
                 number = 0;
             }
             var message = messageEventArgs.Message;
-            if(message.From.Username=="pauchok1love")
+            
+            if (message.From.Username=="pauchok1love")
             {
+                if(message.Type==MessageType.StickerMessage)
+                {
+
+                    var res = message.Sticker.FileId;
+                    if(res!=null)
+                    await Bot.SendTextMessageAsync(message.Chat.Id, res.ToString());
+                    else
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "null(");
+
+                }
                 if (message.Type == MessageType.DocumentMessage)
                 {
                     await Bot.SendTextMessageAsync(message.Chat.Id, message.Document.FileId);
@@ -78,13 +90,14 @@ namespace Bot_NetCore_
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
-                            int time = new Random().Next(5, 11);
+                            int time = new Random().Next(2, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
-                                DateTime now = DateTime.UtcNow;
+                                DateTime now = DateTime.Now;
                                 now =now.AddMinutes(time);
-                                await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
+                                Console.WriteLine(DateTime.Now.ToString() + " " + now.ToString());
+                                await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id,now);
                             }
                             else
                             {
@@ -94,8 +107,10 @@ namespace Bot_NetCore_
                             FileToSend f = new FileToSend("https://i.imgur.com/O3DHIA5.gif");
                             await Bot.SendDocumentAsync(message.Chat.Id, f);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[5]);
+                            
+
                         }
-                        catch(Exception banE)
+                        catch (Exception banE)
                         {
                             await Bot.SendTextMessageAsync(message.Chat.Id, "О нет! что-то пошло не так(( " + banE.Message);
                         }
@@ -148,11 +163,11 @@ namespace Bot_NetCore_
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
-                            int time = new Random().Next(5, 11);
+                            int time = new Random().Next(2, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
-                                DateTime now = DateTime.UtcNow;
+                                DateTime now = DateTime.Now;
                                 now =now.AddMinutes(time);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                             }
