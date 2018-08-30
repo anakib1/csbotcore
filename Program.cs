@@ -54,6 +54,7 @@ namespace Bot_NetCore_
         {
             return degrees * Math.PI / 180;
         }
+        
         private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             if(DateTime.Now.Minute%2==0&&DateTime.Now.Second==0)
@@ -63,6 +64,43 @@ namespace Bot_NetCore_
             var message = messageEventArgs.Message;
             if(message.From.Username=="pauchok1love")
             {
+                if (message.Type == MessageType.DocumentMessage)
+                {
+                    await Bot.SendTextMessageAsync(message.Chat.Id, message.Document.FileId);
+                }
+                if (message.Type == MessageType.TextMessage)
+                {
+                    if (message.Text.Contains("/voteban") && message.ReplyToMessage != null)
+                    {
+                        try
+                        {
+                            string[] text = { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." };
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.From.FirstName + " " + message.From.LastName + "( " + message.From.Username + " )" + text[2]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
+                            int time = new Random().Next(1, 11);
+                            if (new Random().Next(0, 3) >= 1)
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
+                                DateTime now = DateTime.Now;
+                                now.AddMinutes(time);
+                                await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
+                            }
+                            else
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, "сегодня вам повезло и вы можете жить дальше! Но больше не нарушайте!");
+
+                            }
+                            FileToSend f = new FileToSend("https://i.imgur.com/O3DHIA5.gif");
+                            await Bot.SendDocumentAsync(message.Chat.Id, f);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[5]);
+                        }
+                        catch(Exception banE)
+                        {
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "О нет! что-то пошло не так(( " + banE.Message);
+                        }
+                    }
+                }
                 if(message.Type==MessageType.LocationMessage)
                 {
                     var location = message.Location;
@@ -77,7 +115,8 @@ namespace Bot_NetCore_
                             Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(location.Latitude) * Math.Cos(klat);
                     var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
                     var res= earthRadiusKm * c;
-                    await Bot.SendTextMessageAsync(message.Chat.Id, "you need to go: "+ res.ToString()+"to get to Kiev");
+                    res = Math.Round(res, 3);
+                    await Bot.SendTextMessageAsync(message.Chat.Id, "you need to go: <strong>"+ res.ToString()+"</strong> km, to get to Kiev",ParseMode.Html);
                 }
             }
             if (message?.Type == MessageType.TextMessage)
@@ -98,6 +137,43 @@ namespace Bot_NetCore_
                     Random random = new Random();
                     if(number<100)
                     await Bot.SendStickerAsync(message.Chat.Id, s[random.Next(0, s.Length)], replyToMessageId: message.MessageId);
+                }
+                if(message.Text.Contains("/voteban")&&message.From.Username!="pauchok1love" && message.ReplyToMessage != null)
+                {
+                    if(message.From.Username=="dankavol"||message.From.Username=="autodestructi0n")
+                    {
+                        try
+                        {
+                            string[] text = { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." };
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.From.FirstName + " " + message.From.LastName + "( " + message.From.Username + " )" + text[2]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
+                            int time = new Random().Next(1, 11);
+                            if (new Random().Next(0, 3) >= 1)
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
+                                DateTime now = DateTime.Now;
+                                now.AddMinutes(time);
+                                await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
+                            }
+                            else
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, "сегодня вам повезло и вы можете жить дальше! Но больше не нарушайте!");
+
+                            }
+                            FileToSend f = new FileToSend("https://i.imgur.com/O3DHIA5.gif");
+                            await Bot.SendDocumentAsync(message.Chat.Id, f);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[5]);
+                        }
+                        catch (Exception banE)
+                        {
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "О нет! что-то пошло не так(( " + banE.Message);
+                        }
+                    }
+                    else
+                    {
+                        await Bot.SendTextMessageAsync(message.Chat.Id, "Ні! Ти не можеш цього робити! Ти не Одмін!", replyToMessageId: message.MessageId);
+                    }
                 }
                 if(message.Text.Contains("/getprice"))
                 {
