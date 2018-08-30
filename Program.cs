@@ -78,7 +78,7 @@ namespace Bot_NetCore_
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
-                            int time = new Random().Next(1, 11);
+                            int time = new Random().Next(2, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
@@ -148,7 +148,7 @@ namespace Bot_NetCore_
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
-                            int time = new Random().Next(1, 11);
+                            int time = new Random().Next(2, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
