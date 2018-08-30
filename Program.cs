@@ -76,7 +76,7 @@ namespace Bot_NetCore_
                         {
                             string[] text = { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." };
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.From.FirstName + " " + message.From.LastName + "( " + message.From.Username + " )" + text[2]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
                             await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
                             int time = new Random().Next(1, 11);
                             if (new Random().Next(0, 3) >= 1)
