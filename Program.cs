@@ -101,7 +101,7 @@ namespace Bot_NetCore_
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id,now);
                                 FileToSend f = new FileToSend("https://i.imgur.com/O3DHIA5.gif");
                                 await Bot.SendDocumentAsync(message.Chat.Id, f);
-                                Thread.Sleep(time * 60 * 10000);
+                                Thread.Sleep(time * 60 * 1000);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, DateTime.Now, true, true, true, true);
                             }
                             else
@@ -177,7 +177,7 @@ namespace Bot_NetCore_
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, now);
                                 FileToSend f = new FileToSend("https://i.imgur.com/O3DHIA5.gif");
                                 await Bot.SendDocumentAsync(message.Chat.Id, f);
-                                Thread.Sleep(time * 60 * 10000);
+                                Thread.Sleep(time * 60 * 1000);
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id, DateTime.Now, true, true, true, true);
                             }
                             else
