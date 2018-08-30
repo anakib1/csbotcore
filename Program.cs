@@ -96,6 +96,7 @@ namespace Bot_NetCore_
                                 await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
                                 DateTime now = DateTime.Now;
                                 now =now.AddMinutes(time);
+                                now = now.AddHours(3);
                                 Console.WriteLine(DateTime.Now.ToString() + " " + now.ToString());
                                 await Bot.RestrictChatMemberAsync(message.Chat.Id, message.ReplyToMessage.From.Id,now);
                             }
