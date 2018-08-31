@@ -40,7 +40,7 @@ namespace Bot_NetCore_
         }
         bool IsAllUpper(string input)
         {
-            string a = "йцукенгшщзхъэждлорпавыфячсмитьбюё".ToUpper();
+            string a = "йцукенгшщзхъэждлорпавыфячсмитьбюё ".ToUpper();
             foreach(char c in input)
             {
                 if(!a.Contains(c)||c.ToString()!=c.ToString().ToUpper())
@@ -66,6 +66,7 @@ namespace Bot_NetCore_
             
             if (message.From.Username=="pauchok1love")
             {
+
                 if(message.Type==MessageType.StickerMessage)
                 {
 
@@ -82,18 +83,32 @@ namespace Bot_NetCore_
                 }
                 if (message.Type == MessageType.TextMessage)
                 {
+                    /*
+                    if(message.Text.Contains("/strike"))
+                    {
+                        string res = "<s>"+message.Text.Substring(message.Text.IndexOf('e') + 1)+"</s>";
+                        await Bot.SendTextMessageAsync(message.Chat.Id, res,ParseMode.Html);
+
+                    }*/
                     if (message.Text.Contains("/voteban") && message.ReplyToMessage != null)
                     {
                         try
                         {
-                            string[] text = { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." };
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
+                            string[][] text = new string[][]
+                               {
+                                   new string[] { "Сколько можно баловатся вотебаном??", "Сегодня прописиваем п*зды .."," Вы попали под разадчу!"," ","итак, вы будуте репрессированы на "," минут. Старайтесь не злить одменов!","пойду дальше спать..."},
+                                   new string[] { "ГДЕ АНИМЕ! ЧТО АНИМЕ! КОГО ИЗБИТЬ?!", "Ищем врага народа.... Ищем, скипаем генезиса,...", "ПОКАЙСЯ И ВЕРЬ В ЭПОЛ! ", "ДУМАЕМ, ШО С ТОБОЙ ДЕЛАТЬ","Ты будешь  избит макбуком с ай9 на ", " минут. И больше не слова плохого про эпл чтоб я не слышал!", "Пошел писать доклад Тиму Куку.." },
+                                   new string[] { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", " минут! Більше не порушуйте!!", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." }
+                               };
+
+                            int typeofanswer = new Random().Next(0, text.Length);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][0]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[typeofanswer][2]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][3]);
                             int time = new Random().Next(1, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
-                                await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
+                                await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][4] + time + text[typeofanswer][5], replyToMessageId: message.ReplyToMessage.MessageId);
                                 DateTime now = DateTime.Now;
                                 now =now.AddMinutes(time);
                                 now = now.AddHours(3);
@@ -109,7 +124,7 @@ namespace Bot_NetCore_
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "сегодня вам повезло и вы можете жить дальше! Но больше не нарушайте!");
 
                             }
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[5]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][6]);
                             
 
                         }
@@ -162,14 +177,21 @@ namespace Bot_NetCore_
                     {
                         try
                         {
-                            string[] text = { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." };
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[0]);
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[2]);
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[3]);
+                            string[][] text = new string[][]
+                                {
+                                   new string[] { "Сколько можно баловатся вотебаном??", "Сегодня прописиваем п*зды .."," Вы попали под разадчу!"," ","итак, вы будуте репрессированы на "," минут. Старайтесь не злить одменов!","пойду дальше спать..."},
+                                   new string[] { "ГДЕ АНИМЕ! ЧТО АНИМЕ! КОГО ИЗБИТЬ?!", "Ищем врага народа.... Ищем, скипаем генезиса,...", "ПОКАЙСЯ И ВЕРЬ В ЭПОЛ! ", "ДУМАЕМ, ШО С ТОБОЙ ДЕЛАТЬ","Ты будешь  избит макбуком с ай9 на ", " минут. И больше не слова плохого про эпл чтоб я не слышал!", "Пошел писать доклад Тиму Куку.." },
+                                   new string[] { "ВОТЕБАН 23.324_final_2_tochnofinal(3) ЗАПУЩЕН! ", " ПОШУК ПОРУШНИКА РОЗПОЧАТО! ", " ТИ КЛЯТИЙ ПОРУШНИК(МОСКАЛЬ)!", "Выбор меры присечения ..... ", " Вы будете забанены на ", " минут! Більше не порушуйте!!", "СИСТЕМА ВЫКЛЮЧАЕТСЯ ДО СЛЕДУЮЩЕГО НАРУШЕНИЯ..." }
+                                };
+
+                            int typeofanswer = new Random().Next(0, text.Length);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][0]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][1] + message.ReplyToMessage.From.FirstName + " " + message.ReplyToMessage.From.LastName + "( @" + message.ReplyToMessage.From.Username + " )" + text[typeofanswer][2]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][3]);
                             int time = new Random().Next(1, 11);
                             if (new Random().Next(0, 3) >= 1)
                             {
-                                await Bot.SendTextMessageAsync(message.Chat.Id, text[4] + time + " минут! Більше не порушуйте!!", replyToMessageId: message.ReplyToMessage.MessageId);
+                                await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][4] + time + text[typeofanswer][5], replyToMessageId: message.ReplyToMessage.MessageId);
                                 DateTime now = DateTime.Now;
                                 now = now.AddMinutes(time);
                                 now = now.AddHours(3);
@@ -185,7 +207,8 @@ namespace Bot_NetCore_
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "сегодня вам повезло и вы можете жить дальше! Но больше не нарушайте!");
 
                             }
-                            await Bot.SendTextMessageAsync(message.Chat.Id, text[5]);
+                            await Bot.SendTextMessageAsync(message.Chat.Id, text[typeofanswer][6]);
+
 
 
                         }
